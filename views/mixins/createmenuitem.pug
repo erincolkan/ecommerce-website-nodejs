@@ -1,0 +1,3 @@
+mixin createCategory(category)
+    li(class=(path === `/categories/${category.name}/${category._id}`?'list-group-item list-group-item-dark': 'list-group-item'))
+        a(href=`/categories/${category.name}/${category._id}` style="color:black;") #{category.name}

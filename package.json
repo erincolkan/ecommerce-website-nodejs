@@ -1,0 +1,30 @@
+{
+  "name": "nodestudy",
+  "version": "1.0.0",
+  "main": "firstapp.js",
+  "scripts": {
+    "start": "nodemon firstapp.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.2",
+    "bcrypt": "^5.0.1",
+    "connect-mongodb-session": "^2.4.1",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "dyna-email-sender": "^1.0.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.13",
+    "multer": "^1.4.2",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "description": ""
+}

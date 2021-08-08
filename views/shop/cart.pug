@@ -1,0 +1,51 @@
+extends ../layout/main-layout.pug
+
+block content
+    //- if (action !== 'undefined' && action === 'edit')
+    //-     div.alert.alert-success The product #{pname} has been updated.
+
+    if (action !== 'undefined' && action === 'remove')
+        div.alert.alert-info The product #{pname} has been removed from the cart.    
+
+    if prdcts.length > 0
+        .table-responsive
+            table.table.table-bordered.table-striped
+                thead.thead-dark
+                    tr.table-success  
+                        th(style="width:120px;") Image
+                        th(style="width:250px;") Product Name
+                        //- th Description
+                        th(style="width:100px;") Price
+                        th(style="width:100px") Quantity
+                        th(style="width:115px")
+                tbody
+                    each product in prdcts
+                        tr 
+                            td
+                                img(src=`/img/${product.productId.imageUrl}` width="80px")
+                            td #{product.productId.name}
+                            //- td #{product.description}
+                            td #{product.productId.price} ₺
+                            td #{product.quantity}
+                            td  
+                                form(action='/delete-cartitem' method='POST' style="display: inline;")
+                                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                                    input(type="hidden" name="id" value=`${product.productId._id}`)
+                                    input(type="hidden" name="name" value=`${product.productId.name}`)
+                                    button(type="submit").btn.btn-danger.btn-sm Delete
+                    
+                tfoot
+                    td(colspan="2") Summary
+                        - var total = 0;
+                        each product in prdcts 
+                            - total += (product.productId.price * product.quantity) 
+                    td.text-center(colspan="2") Total: #{total} ₺
+                    td
+            .text-center
+                form(action="/create-order" method="POST" style="display: inline")
+                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                    a(href="/").btn.btn-primary Continue Shopping
+                    input(type="hidden" value=`${total}` name="total")
+                    button(type="submit").btn.btn-success.ml-2 Checkout             
+    else
+        h1 Your cart is empty.

@@ -1,0 +1,20 @@
+extends ../layout/main-layout.pug
+
+block content
+    form(action="/admin/edit-category" method="POST")
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        input(type="hidden" value=`${category._id}` name="id")
+
+        .form-group.row
+            label.col-sm-2.col-form-label(for="catgName") Name
+            .col-sm-10
+                input.form-control#catgName(type="text" name="name" value=`${category.name}`)
+        
+        .form-group.row
+            label.col-sm-2.col-form-label(for="catgDescription") Description
+            .col-sm-10
+                textarea.form-control#catgDescription(type="text" name="description" cols="30" rows="10") #{category.description}
+
+        .form-group.row
+            .col-sm-10.offset-sm-2.my-2
+                input.btn.btn-success(type="submit" value="Edit category")

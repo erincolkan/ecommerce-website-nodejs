@@ -1,0 +1,16 @@
+extends ../layout/main-layout.pug
+
+include ../mixins/createproduct.pug
+
+block content
+    .row
+        .col-md-3
+            include ../includes/menu.pug
+        
+        .col-md-9
+            .row
+                if prdcts.length > 0
+                    each product in prdcts
+                        +createProduct(product)
+                else
+                    h1 No product available.

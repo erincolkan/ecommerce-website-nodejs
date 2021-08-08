@@ -1,0 +1,48 @@
+extends ../layout/main-layout.pug
+    
+block content
+    if (action !== 'undefined' && action === 'add')
+        div.alert.alert-success The product #{pname} has been added.
+
+    if errorMessage 
+        .alert.alert-danger #{errorMessage}    
+
+    form(action="/admin/add-product" method="POST" enctype="multipart/form-data")
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        
+        .form-group.row
+            label.col-sm-2.col-form-label(for="categoryids") Categories
+            .col-sm-10
+                each category in categories
+                    input(type="checkbox" name="categoryids" value=`${category._id}`) 
+                    | #{category.name} 
+                    br
+
+        .form-group.row
+            label.col-sm-2.col-form-label(for="productName") Name
+            .col-sm-10
+                input.form-control#productName(type="text" name="name" value=`${inputs.name}`)
+        
+        .form-group.row
+            label.col-sm-2.col-form-label(for="productPrice") Price
+            .col-sm-10
+                input.form-control#productPrice(type="text" name="price" value=`${inputs.price}`)
+
+        .form-group.row
+            label.col-sm-2.col-form-label(for="editor") Description
+            .col-sm-10
+                textarea.form-control(type="text" id="editor" name="description" cols="30" rows="10" value=`${inputs.description}`)
+
+        .form-group.row
+            label.col-sm-2.col-form-label(for="productImg") Image
+            .col-sm-10
+                input.form-control-file#productImg(type="file" name="imgurl")        
+        
+                            
+        .form-group.row
+            .col-sm-10.offset-sm-2.my-2
+                input.btn.btn-dark(type="submit" value="Save product")
+
+block scripts 
+    script(src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js")
+    script(src="/js/script.js") 

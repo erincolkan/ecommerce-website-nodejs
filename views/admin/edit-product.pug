@@ -1,0 +1,44 @@
+extends ../layout/main-layout.pug
+
+block content
+    form(action="/admin/edit-product" method="POST" enctype="multipart/form-data")
+        input(type="hidden" value=`${product._id}` name="id")
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        
+        .form-group.row
+            label.col-sm-2.col-form-label(for="categoryids") Categories
+            .col-sm-10
+                each category in categories
+                    input(type="checkbox" name="categoryids" value=`${category._id}` checked=category.selected) 
+                    | #{category.name}
+                    br
+
+        .form-group.row
+            label.col-sm-2.col-form-label(for="name") Name
+            .col-sm-10
+                input.form-control#name(type="text" name="name" value=`${product.name}`)
+        
+        .form-group.row
+            label.col-sm-2.col-form-label(for="price") Price
+            .col-sm-10
+                input.form-control#price(type="text" name="price" value=`${product.price}`)
+
+        .form-group.row
+            label.col-sm-2.col-form-label(for="editor") Description
+            .col-sm-10
+                textarea.form-control(id="editor" type="text" name="description" cols="30" rows="10") #{product.description}
+
+        .form-group.row
+            label.col-sm-2.col-form-label(for="imgurl") Image
+            .col-sm-10
+                img(src=`/img/${product.imageUrl}` style="width: 18rem; height: 12rem;")
+                input.form-control-file#imgurl(type="file" name="imgurl" value=`${product.imageUrl}`)        
+        
+                            
+        .form-group.row
+            .col-sm-10.offset-sm-2.my-2
+                input.btn.btn-success(type="submit" value="Save product")
+
+block scripts 
+    script(src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js")
+    script(src="/js/script.js") 

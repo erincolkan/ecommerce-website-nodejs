@@ -1,0 +1,36 @@
+extends ../layout/main-layout.pug
+
+block content
+    if (action !== 'undefined' && action === 'add')
+        div.alert.alert-success Your order has been created.  
+
+    if orders.length > 0
+        each order in orders 
+            .card.mb-5
+                .card-header.text-dark.bg-light
+                    h3 Order ID ##{order._id}
+                table.table.table-striped
+                    thead.thead-dark
+                        tr
+                            th Image
+                            th Product Name 
+                            th Quantity
+                            th Price
+                    tbody 
+                        each product in order.items 
+                            tr
+                                td
+                                    img(src=`/img/${product.product.imageUrl}` width="80px")
+                                td #{product.product.name}
+                                td #{product.quantity}
+                                td #{product.product.price}
+                    tfoot
+                        tr
+                            td(colspan="2") #{order.date}
+                            - var total = 0;
+                            each product in order.items 
+                                - total += (product.product.price * product.quantity)
+                            td(colspan="2") Total: #{total} ₺
+    else 
+        h1 No orders.
+

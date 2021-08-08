@@ -1,0 +1,21 @@
+#mySlider.carousel.slide(data-ride="carousel")
+    ol.carousel-indicators
+        li(data-target="#mySlider" data-slide-to="0").active
+        li(data-target="#mySlider" data-slide-to="1")
+        li(data-target="#mySlider" data-slide-to="2")
+
+    .carousel-inner
+        .carousel-item.active
+            img.d-block.img-fluid(src="/img/ph1.jpg" alt="Galaxy Z Flip" style="width: 1200px; height: 400px;")
+                    
+        .carousel-item
+            img.d-block.img-fluid(src="/img/ph2.png" alt="Xiaomi Mi Note10" style="width: 1200px; height: 400px;")
+
+        .carousel-item
+            img.d-block.img-fluid(src="/img/ph3.jpg" alt="iPhone Xs Max" style="width: 1200px; height: 400px;")
+
+    a.carousel-control-prev(href="#mySlider" role="button" data-slide="prev")
+        span.carousel-control-prev-icon(aria-hidden="true")
+
+    a.carousel-control-next(href="#mySlider" role="button" data-slide="next")
+        span.carousel-control-next-icon(aria-hidden="true")

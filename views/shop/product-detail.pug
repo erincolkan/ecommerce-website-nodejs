@@ -1,0 +1,23 @@
+extends ../layout/main-layout.pug
+
+block content
+    .row
+        .col-md-3
+            img(src=`/img/${product.imageUrl}` alt=`${product.description}`).img-fluid
+        
+        .col-md-9.pl-3
+            h1.mb-3 #{product.name} 
+            each category in categories
+                span.badge.badge-secondary.mr-2 
+                    a(href=`/categories/${category.name}/${category._id}` style="color:white") #{category.name} 
+            hr
+            .mb-3
+                h4.mb-3 Price: #{product.price} ₺
+                button.btn.btn-outline-secondary.btn-lg(type="submit") Add to Cart
+            
+    .row
+        .col-md-12
+            hr
+            p.p-3 !{product.description}
+                    
+                    

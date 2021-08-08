@@ -1,0 +1,41 @@
+extends ../layout/main-layout.pug
+
+block content
+    if (action !== 'undefined' && action === 'edit')
+        div.alert.alert-warning The product #{pname} has been updated.
+
+    if (action !== 'undefined' && action === 'delete')
+        div.alert.alert-danger The product #{pname} has been deleted.
+
+    if (action !== 'undefined' && action === 'add')
+        div.alert.alert-success The product #{pname} has been added.       
+
+    if prdcts.length > 0
+        .table-responsive
+            table.table.table-bordered.table-striped
+                thead.thead-dark
+                    tr.table-success  
+                        th(style="width:150px;") Image
+                        th(style="width:200px;") Product Name
+                        th(style="width:100px;") Price
+                        th Added By
+                        th(style="width:115px")
+                tbody
+                    each product in prdcts
+                        tr 
+                            td
+                                img(src=`/img/${product.imageUrl}` width="80px")
+                            td 
+                                a(href=`/products/${product._id}` style="color: black") #{product.name}
+                            td #{product.price} ₺
+                            td #{product.userId.username}
+                            td 
+                                a.btn.btn-primary.btn-sm.mr-2(href=`/admin/edit-product/${product._id}`) Edit
+                                
+                                form(action='/admin/delete-product' method='POST' style="display: inline;")
+                                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                                    input(type="hidden" name="id" value=`${product._id}`)
+                                    input(type="hidden" name="name" value=`${product.name}`)
+                                    button(type="submit").btn.btn-danger.btn-sm Delete
+    else
+        h1 No products!

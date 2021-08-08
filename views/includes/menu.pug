@@ -1,0 +1,8 @@
+include ../mixins/createmenuitem.pug
+
+ul.list-group.list-group-flush
+    if categories.length > 0
+        each category in categories
+            +createCategory(category)
+    else
+        h2 No available categories.

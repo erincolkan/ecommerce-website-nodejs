@@ -1,0 +1,61 @@
+
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+  <title></title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">  
+    <div class="container"><a class="navbar-brand" href="/">EOD</a>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/products">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" href="/orders">Orders</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/add-product">Add Product</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/products">Admin Products    </a></li>
+      </ul>
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link">Login</a></li>
+        <li class="nav-item"><a class="nav-link">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container" style="padding-top: 100px">
+    <form action="/admin/add-product" method="POST">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="productName">Name</label>
+        <div class="col-sm-10">
+          <input class="form-control" id="productName" type="text" name="name"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="productPrice">Price</label>
+        <div class="col-sm-10">
+          <input class="form-control" id="productPrice" type="text" name="price"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="productDescription">Description</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" id="productDescription" type="text" name="description" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="productImg">Image</label>
+        <div class="col-sm-10">
+          <input class="form-control" id="productImg" type="text" name="imgurl"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2 my-2">
+          <input class="btn btn-success" type="submit" value="Save product"/>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"> </script>
+</body>

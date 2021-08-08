@@ -1,0 +1,36 @@
+extends ../layout/main-layout.pug
+
+block content
+    if (action !== 'undefined' && action === 'edit')
+        div.alert.alert-success The category #{catgname} has been updated.
+
+    if (action !== 'undefined' && action === 'delete')
+        div.alert.alert-danger The category #{catgname} has been deleted.
+
+    if (action !== 'undefined' && action === 'add')
+        div.alert.alert-warning The category #{catgname} has been added.      
+
+    if categories.length > 0
+        .table-responsive
+            table.table.table-bordered.table-striped
+                thead.thead-dark
+                    tr.table-success  
+                        th(style="width:200px;") Category Name
+                        th Description
+                        th(style="width:75px;") Actions
+                        
+                tbody
+                    each category in categories
+                        tr 
+                            td #{category.name}
+                            td #{category.description}
+                            td 
+                                a.btn.btn-primary.btn-sm.mr-2(href=`/admin/edit-category/${category._id}`) Edit
+                                
+                                form(action='/admin/delete-category' method='POST' style="display: inline;")
+                                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                                    input(type="hidden" name="id" value=`${category._id}`)
+                                    input(type="hidden" name="name" value=`${category.name}`)
+                                    button(type="submit").btn.btn-danger.btn-sm Delete
+    else
+        h1 No categories found.

@@ -1,0 +1,15 @@
+extends ../layout/main-layout.pug
+
+include ../mixins/createproduct.pug
+
+block content
+    .row
+        .col-md-3
+            include ../includes/menu.pug
+        .col-md-9
+            if products.length > 0
+                .row
+                    each product in products
+                        +createProduct(product)
+            else 
+                h1 There are no products in this category.

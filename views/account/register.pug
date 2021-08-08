@@ -1,0 +1,31 @@
+extends ../layout/main-layout.pug
+
+block content 
+    .container
+        if (result !== 'undefined' && result === 'success')
+            div.alert.alert-success You have successfully registered.
+
+        if (result !== 'undefined' && result === 'exists')
+            div.alert.alert-warning This username is already taken. #[a(href='/login') Click here] to login if this was you.
+
+        .col-md-6.mx-auto
+            .card
+                .card-body
+                    h2.card-title.text-center Register
+                    form(action="/register" method="post")
+                        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                        
+                        .input-group.mb-3 
+                            span.input-group-text#addon1 Username
+                            input.form-control(type="text" name="username" aria-label="E-mail" aria-describedby="addon1")
+
+                        .input-group.mb-3 
+                            span.input-group-text#addon1 E-mail
+                            input.form-control(type="email" name="email" aria-label="E-mail" aria-describedby="addon1")
+                        
+                        .input-group.mb-3
+                            span.input-group-text#addon2 Password 
+                            input.form-control(type="password" name="password" aria-label="Password" aria-describedby="addon2")
+
+                        .input-group
+                            button.btn.btn-dark.btn-md.mx-auto(type="submit") Register
